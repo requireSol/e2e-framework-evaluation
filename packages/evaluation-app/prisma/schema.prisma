@@ -32,7 +32,9 @@ model Post {
 model SurveyResponse {
   id           String   @id @default(cuid())
   createdAt    DateTime @default(now())
+  ipAddress    String   @default("unknown")
   responseData Json
 
+  @@index([ipAddress])
   @@index([createdAt])
 }
