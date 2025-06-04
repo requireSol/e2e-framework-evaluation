@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="playwright:open" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/packages/e2e-playwright/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="pw:open" />
+    </scripts>
+    <node-interpreter value="project" />
+    <package-manager value="pnpm" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,11 @@
+{
+  "name": "@e2e-framework-evaluation/lib-common",
+  "version": "1.0.0",
+  "description": "common types, enums, constants etc.",
+  "files": [
+    "src"
+  ],
+  "devDependencies": {
+    "@types/node": "^22.7.9"
+  }
+}

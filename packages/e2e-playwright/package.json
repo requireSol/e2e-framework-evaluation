@@ -1,0 +1,20 @@
+{
+  "name": "@e2e-framework-evaluation/e2e-playwright",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "pretest": "tsc --incremental -p tests/tsconfig.json",
+    "test": "playwright test -c tests-out",
+    "pw:open": "pnpm exec playwright test --ui",
+    "pw:run": "pnpm exec playwright test"
+  },
+  "author": "Enam Solaimani",
+  "dependencies": {
+    "@e2e-framework-evaluation/lib-common": "workspace:*",
+    "dotenv": "^16.4.7",
+    "@playwright/test": "^1.49.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.29"
+  }
+}
