@@ -105,6 +105,11 @@ export default function Home() {
                 Sign in to discover the Features.
               </p>
               <div className="relative flex justify-center gap-3 md:justify-start">
+                <Link href={"/survey"}>
+                  <button className="rounded-full bg-[#131316] px-4 py-2 text-sm font-semibold text-white dark:bg-gray-300 dark:text-black">
+                    Umfrage
+                  </button>
+                </Link>
                 <SignedOut>
                   <SignInButton>
                     <button className="rounded-full bg-[#131316] px-4 py-2 text-sm font-semibold text-white dark:bg-gray-300 dark:text-black">
@@ -112,11 +117,6 @@ export default function Home() {
                     </button>
                   </SignInButton>
                 </SignedOut>
-                <Link href={"/survey"}>
-                  <button className="rounded-full bg-[#131316] px-4 py-2 text-sm font-semibold text-white dark:bg-gray-300 dark:text-black">
-                    Umfrage
-                  </button>
-                </Link>
               </div>
             </div>
 

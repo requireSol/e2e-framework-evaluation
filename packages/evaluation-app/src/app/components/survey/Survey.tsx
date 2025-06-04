@@ -21,9 +21,9 @@ export default function SurveyComponent() {
       setSubmissionStatus('error');
     }
   });
-  console.log(submissionStatus)
   const surveyComplete = useCallback((survey: Model) => {
     try {
+      setSubmissionStatus('submitting');
       submitResponse.mutate({
         responseData: survey.data as Record<string, string[]>
       });

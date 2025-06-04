@@ -4,17 +4,24 @@ import { TRPCError } from "@trpc/server";
 import SurveyResponseSchema from "@evaluation-app/schemas/surveySchema";
 
 export const surveyRouter = createTRPCRouter({
-  // Speichern einer neuen Survey-Antwort
   submitResponse: publicProcedure
     .input(SurveyResponseSchema)
     .mutation(async ({ ctx, input }) => {
       try {
-        return await ctx.db.surveyResponse.create({
+        // IP-Adresse aus den Headers extrahieren
+        const ipAddress = ctx.headers.get("x-forwarded-for") ??
+                        ctx.headers.get("x-real-ip") ??
+                        "unknown";
+
+        // Neue Survey-Antwort in der Datenbank speichern
+        const surveyResponse = await ctx.db.surveyResponse.create({
           data: {
+            ipAddress,
             responseData: input.responseData,
           },
         });
 
+        return surveyResponse;
       } catch (error) {
         console.error("Error submitting survey response:", error);
         throw new TRPCError({
@@ -24,7 +31,6 @@ export const surveyRouter = createTRPCRouter({
       }
     }),
 
-  // Alle Survey-Antworten abrufen
   getAll: publicProcedure
     .query(async ({ ctx }) => {
       try {
@@ -40,7 +46,6 @@ export const surveyRouter = createTRPCRouter({
       }
     }),
 
-  // Eine bestimmte Survey-Antwort nach ID abrufen
   getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
@@ -73,10 +78,7 @@ export const surveyRouter = createTRPCRouter({
     .query(async ({ ctx }) => {
       try {
         const totalCount = await ctx.db.surveyResponse.count();
-        const uniqueIPs = await ctx.db.surveyResponse.findMany({
-          select: { ipAddress: true },
-          distinct: ['ipAddress'],
-        });
+
         
         const lastSubmission = await ctx.db.surveyResponse.findFirst({
           orderBy: { createdAt: "desc" },
@@ -84,8 +86,7 @@ export const surveyRouter = createTRPCRouter({
 
         return {
           totalResponses: totalCount,
-          uniqueRespondents: uniqueIPs.length,
-          lastSubmissionDate: lastSubmission?.createdAt || null,
+          lastSubmissionDate: lastSubmission?.createdAt ?? null,
         };
       } catch (error) {
         console.error("Error fetching survey stats:", error);
