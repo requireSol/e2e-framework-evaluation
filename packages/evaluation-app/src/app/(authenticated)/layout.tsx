@@ -9,7 +9,7 @@ import { Logos } from "@evaluation-app/app/components/logos";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import DarkModeToggle from "@evaluation-app/app/components/toogle-darkmode";
-import { E2ETestIds } from "@lib-common/E2ETestIds";
+import { testId } from "@lib-common/E2ETestIds";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user } = useUser();
@@ -70,49 +70,49 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
               <nav className="flex flex-grow flex-col space-y-2">
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_home}
+                  testId={testId("tabmenu_home")}
                   titel="Home"
                   path="/dashboard"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_session}
+                  testId={testId("tabmenu_session")}
                   titel="Session"
                   path="/session"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_canvas}
+                  testId={testId("tabmenu_canvas")}
                   titel="Canvas"
                   path="/canvas"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_cookies}
+                  testId={testId("tabmenu_cookies")}
                   titel="Cookies"
                   path="/cookies"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_actions}
+                  testId={testId("tabmenu_actions")}
                   titel="Actions"
                   path="/actions"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_email}
+                  testId={testId("tabmenu_email")}
                   titel="Email"
                   path="/email"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_timestamp}
+                  testId={testId("tabmenu_timestamp")}
                   titel="TIMESTAMP"
                   path="/timestamp"
                   onClickAction={() => setIsMenuOpen(false)}
                 />
                 <TabMenuButton
-                  testId={E2ETestIds.tabmenu_trpc}
+                  testId={testId("tabmenu_trpc")}
                   titel="Trpc"
                   path="/trpc"
                   onClickAction={() => setIsMenuOpen(false)}

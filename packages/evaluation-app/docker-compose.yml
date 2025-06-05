@@ -1,4 +1,4 @@
-name: "validation-app"
+name: "evaluation-app"
 
 version: "3.9"
 services:
@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: evaluation-app
     ports:
       - "5432:5432"
     volumes:

@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "@evaluation-app/server/api/trpc";
+import {
+  authedProcedure,
+  createTRPCRouter,
+  publicProcedure
+} from "@evaluation-app/server/api/trpc";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -11,7 +15,7 @@ export const postRouter = createTRPCRouter({
       };
     }),
 
-  create: protectedProcedure
+  create: authedProcedure
     .input(z.object({ text: z.string().min(1), userName: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {
       return ctx.db.post.create({
@@ -23,7 +27,7 @@ export const postRouter = createTRPCRouter({
       });
     }),
 
-  getLatest: protectedProcedure.query(async ({ ctx }) => {
+  getLatest: authedProcedure.query(async ({ ctx }) => {
     const post = await ctx.db.post.findFirst({
       orderBy: { createdAt: "desc" },
       where: { createdById: ctx.user.id  },
@@ -32,7 +36,7 @@ export const postRouter = createTRPCRouter({
     return post ?? null;
   }),
 
-  getAll: protectedProcedure.query(async ({ ctx }) => {
+  getAll: authedProcedure.query(async ({ ctx }) => {
     const posts = await ctx.db.post.findMany({
       orderBy: { createdAt: "desc" },
     });
@@ -40,7 +44,7 @@ export const postRouter = createTRPCRouter({
     return posts ?? null;
   }),
 
-  getSecretMessage: protectedProcedure.query(() => {
+  getSecretMessage: authedProcedure.query(() => {
     return "you can now see this secret message!";
   }),
 });

@@ -1,12 +1,12 @@
 import { Resend } from "resend";
-import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { createTRPCRouter, authedProcedure } from "../trpc";
 import EmailSchema from "@evaluation-app/schemas/emailSchema";
 import Email from "@evaluation-app/emails/email";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const emailRouter = createTRPCRouter({
-  sendEmail: protectedProcedure
+  sendEmail: authedProcedure
     .input(EmailSchema)
     .mutation(async ({ input }) => {
       const { to, subject, text } = input;
