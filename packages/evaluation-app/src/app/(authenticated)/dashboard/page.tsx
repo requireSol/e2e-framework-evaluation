@@ -1,11 +1,10 @@
 import Layout from "@evaluation-app/app/(authenticated)/layout";
-import { E2ETestIds } from "@lib-common/E2ETestIds";
-
+import { testId } from "@lib-common/E2ETestIds";
 export default function Page() {
   return (
     <div>
       <h1
-        data-testid={E2ETestIds.text_dashboard}
+        data-testid={testId("text_dashboard")}
         className="text-3xl font-bold dark:text-white"
       >
         Dashboard

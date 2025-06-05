@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { E2ETestIds } from "@lib-common/E2ETestIds";
+import { testId } from "@lib-common/E2ETestIds";
 
 export function CustomInput({
   value,
@@ -13,7 +13,7 @@ export function CustomInput({
 }) {
   return (
     <input
-      data-testid={E2ETestIds.input_type}
+      data-testid={testId("input_type")}
       type="text"
       value={value}
       onChange={(e) => onChangeAction(e.target.value)}
